@@ -1,5 +1,5 @@
 import logging 
-from abc import ABC, abstractMethod 
+from abc import ABC, abstractmethod 
 from typing import Union
 
 import numpy as np 
@@ -11,16 +11,19 @@ class DataStrategy(ABC):
     Abstract class defining strategy for handling data
     """
 
-    @abstractMethod
-    def handle_data(self, data: df.DataFrame) -> Union[pd.DataFrame, pd.Series]:
+    @abstractmethod
+    def handle_data(self, data: pd.DataFrame) -> Union[pd.DataFrame, pd.Series]:
         pass
 
 class DataPreProcessStrategy(DataStrategy):
     """
-    Strategy for preprocessing data
+    Data preprocessing strategy which preprocesses the data.
     """
 
-    def handle_data(self, data: df.DataFrame) -> pd.DataFrame: 
+    def handle_data(self, data: pd.DataFrame) -> pd.DataFrame:
+        """
+        Removes columns which are not required, fills missing values with median average values, and converts the data type to float.
+        """
         try:
             data = data.drop(
                 [
@@ -30,38 +33,39 @@ class DataPreProcessStrategy(DataStrategy):
                     "order_estimated_delivery_date",
                     "order_purchase_timestamp",
                 ],
-                axis=1)
-
+                axis=1,
+            )
             data["product_weight_g"].fillna(data["product_weight_g"].median(), inplace=True)
             data["product_length_cm"].fillna(data["product_length_cm"].median(), inplace=True)
             data["product_height_cm"].fillna(data["product_height_cm"].median(), inplace=True)
             data["product_width_cm"].fillna(data["product_width_cm"].median(), inplace=True)
-            data["review_comment_message"].fillna(data["review_comment_message"].median(), inplace=True)
+            # write "No review" in review_comment_message column
+            data["review_comment_message"].fillna("No review", inplace=True)
 
-            # For project simplicity, we will not be using non-numerical, categorical data
             data = data.select_dtypes(include=[np.number])
-
             cols_to_drop = ["customer_zip_code_prefix", "order_item_id"]
             data = data.drop(cols_to_drop, axis=1)
+
             return data
         except Exception as e:
+            logging.error(e)
             raise e
 
 class DataDivideStrategy(DataStrategy):
     """
     Strategy for dividing data into training and test
     """
-    def handle_data(self, data: pd.DataFrame) -> Union[pd.DataFrame, pd.Series]
+    def handle_data(self, data: pd.DataFrame) -> Union[pd.DataFrame, pd.Series]:
         """
         Divide data into train and test
         """
         try:
             X = data.drop(["review_score"], axis=1)
             y = data["review_score"]
-            X_train, X_test, y_train, y_rest = train_test_split(X, y, test_size=0.2, random_state=42) 
+            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42) 
             return X_train, X_test, y_train, y_test
         except Exception as e:
-            logging.error(f"Error in dividing data: {}".format(e))
+            logging.error("Error in dividing data: {}".format(e))
             raise e
 
 class DataCleaning:
