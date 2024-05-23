@@ -1,20 +1,23 @@
-# MLOps Course Code-Along
+# Machine Learning Pipeline Orchestration with ZenML (Proof of Concept)
 
-## Overview
-This repository contains my personal code as I follow along with an MLOps course, which can be found [here on YouTube](https://www.youtube.com/watch?v=-dJPoLm_gtE&t=1958s). The intention is to build my understanding of MLOps by interacting with tools like MLFlow and ZenML.
+## Introduction
+The repository documents the development of an automated, end-to-end machine learning pipeline. The objective is to create a cloud-independent infrastructure for sentiment analysis, utilizing ZenML as the orchestration layer.
 
-## Purpose
-The code within this repo is part of my learning process. It serves to demonstrate practical application of the concepts taught in the course and will evolve as I experiment and extend the provided examples.
+## Note
+This README serves as a dynamic document, subject to updates as the project evolves and more insights on ZenML's capabilities and its interaction with AWS Datazone are gathered. As time goes on, the tools employed are subject to substitution or removal, if too many issues arise given ZenML as the backbone. More documentation will be included as the project grows.  
 
-## Learning Goals
-- Gain hands-on experience with MLFlow and ZenML
-- Understand MLOps workflows and best practices
-- Improve my skills through implementation and experimentation
+## Project Overview
+This project aims to demonstrate the effective use of several tools for orchestrating a machine learning workflow. ZenML serves as the central component, coordinating between the following elements:
 
-## Future Work
-As I progress, I will enhance the project beyond the course material, aiming to broaden my knowledge and explore the full capabilities of the MLOps tools.
+### MLFlow
+Integrated within ZenML, MLFlow provides experiment tracking and model versioning.
 
-## Disclaimer
-This repository is for educational purposes, meant to document my journey through the MLOps course.
+### Airflow
+Airflow schedules and automates pipeline execution, creating DAGs for consistent operation.
 
-Your suggestions and questions are welcome as they will help improve the learning experience.
+### SageMaker
+Used for compute resources for model training and hosting the inference service.
+
+### AWS Datazone
+Datazone organizes and governs the data catalog, ensuring datasets are ready for consumption within the pipeline.
+
