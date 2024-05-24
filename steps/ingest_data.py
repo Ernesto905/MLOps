@@ -26,12 +26,7 @@ def ingest_data(data_path : str) -> pd.DataFrame:
     try:
         ingest_data = IngestData(data_path)
         data = ingest_data.get_data()
-        print("AT THIS POINT DATA COLUMNS ARE:")
-
-        for col in data.columns:
-            print(col)
         return data 
-        
     except Exception as e:
         logging.error("Error while ingesting data: {}".format(e))
         raise e

@@ -5,8 +5,13 @@ from src.evaluation import MSE, RMSE, R2
 from sklearn.base import RegressorMixin
 from typing import Tuple
 from typing_extensions import Annotated
+    
+import mlflow
+from zenml.client import Client
 
-@step 
+experiment_tracker = Client().active_stack.experiment_tracker
+
+@step(experiment_tracker=experiment_tracker.name)
 def evaluate_model(
         model: RegressorMixin,
         X_test: pd.DataFrame,
@@ -35,6 +40,12 @@ def evaluate_model(
 
         rmse_class = RMSE()
         rmse = rmse_class.calculate_scores(y_test, prediction)
+
+
+        # Log metrics with MLFlow
+        mlflow.log_metric("mse", mse)
+        mlflow.log_metric("rmse", rmse)
+        mlflow.log_metric("r2", r2)
 
         return r2, rmse
     except Exception as e:

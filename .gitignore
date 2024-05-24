@@ -2,3 +2,5 @@
 .zen
 data/
 venv/
+
+.DS_Store
