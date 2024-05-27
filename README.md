@@ -16,3 +16,22 @@ Experiment tracking and model versioning.
 Sagemaker for model training and deployment of model endpoints for inference. 
 S3 for artifact storage 
 
+## Running the pipeline 
+Create a data directory at the root of the project and import the presently working [dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) into data directory of the root of the project. 
+
+Integrate MLFlow into the zenml stack 
+```Bash
+zenml integration install mlflow -y
+```
+
+Build your stack 
+```Bash
+zenml experiment-tracker register <tracker_name> --flavor=mlflow
+zenml model-deployer register mlflow --flavor=mlflow
+zenml stack register <stack_name> -a default -o default -d mlflow -e <tracker_name> --set
+```
+
+(OPTIONAL) Verify your stack is up and running
+```Bash
+zenml stack list
+```
