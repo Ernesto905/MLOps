@@ -4,7 +4,7 @@ import pandas as pd
 
 from src.model_dev import LinearRegressionModel
 from sklearn.base import RegressorMixin 
-from .config import ModelNameConfig
+from ..config import ModelNameConfig
 
 import mlflow
 from zenml.client import Client

@@ -23,7 +23,7 @@ def clean_data(data : pd.DataFrame) -> Tuple[
         pd.DataFrame: Pandas dataframe of cleaned data
     """
     try:
-        preprocess_strategy = DataPreProcessStrategy()
+        preprocess_strategy = DataPreprocessStrategy()
         data_cleaning = DataCleaning(data, preprocess_strategy)
         preprocessed_data = data_cleaning.handle_data()
 
