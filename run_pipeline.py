@@ -5,12 +5,6 @@ from zenml.client import Client
 
 if __name__ == "__main__":
     
-
-    # Configure MLFlow Url
-    # last_run = client.get_pipeline("training_pipeline").last_run
-    # trainer_step = last_run.get_step("")
-
-
     print(
         "Now run \n "
         f"    mlflow ui --backend-store-uri \"{get_tracking_uri()}\"\n"
