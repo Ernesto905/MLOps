@@ -15,7 +15,7 @@ class DataStrategy(ABC):
     def handle_data(self, data: pd.DataFrame) -> Union[pd.DataFrame, pd.Series]:
         pass
 
-class DataPreProcessStrategy(DataStrategy):
+class DataPreprocessStrategy(DataStrategy):
     """
     Data preprocessing strategy which preprocesses the data.
     """
