@@ -17,7 +17,13 @@ Sagemaker for model training and deployment of model endpoints for inference.
 S3 for artifact storage 
 
 ## Running the pipeline 
-Create a data directory at the root of the project and import the presently working [dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) into data directory of the root of the project. 
+Create a data directory at the root of the project and import the presently working  into data directory of the root of the project. 
+
+Import the datasets into the data directory at the root of the repo. 
+For Sentiment Analysis: [Twitter sentiment dataset](https://www.kaggle.com/datasets/jp797498e/twitter-entity-sentiment-analysis)
+For Linear Regressions: [brazilian-ecommerce public dataset](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
+
+### For functionality with MLflow
 
 Integrate MLFlow into the zenml stack 
 ```Bash
@@ -35,3 +41,5 @@ zenml stack register <stack_name> -a default -o default -d mlflow -e <tracker_na
 ```Bash
 zenml stack list
 ```
+
+

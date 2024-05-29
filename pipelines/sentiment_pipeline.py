@@ -16,5 +16,5 @@ def sentiment_pipeline(data_path: str):
     train_dataset, eval_dataset = clean_dataset(data)
     train_dataset, eval_dataset = tokenization(train_dataset, eval_dataset)
 
-    model = train_distilbert(train_dataset, eval_dataset)
-    # eval_scores = evaluate_distilbert(model)
+    model_path = train_distilbert(train_dataset, eval_dataset)
+    eval_scores = evaluate_distilbert(model_path, eval_dataset)

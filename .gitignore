@@ -5,3 +5,8 @@ venv/
 
 .DS_Store
 .ipynb_checkpoints
+
+# Training folders, store artifacts
+tmp_trainer
+saved_model
+results

@@ -1,8 +1,9 @@
-from zenml import step 
+from zenml import step
 import logging
 import pandas as pd 
 
 from ..config import ModelNameConfig
+from typing_extensions import Annotated
 
 import mlflow
 from zenml.client import Client
@@ -27,7 +28,7 @@ def compute_metrics(pred):
    
 
 @step(experiment_tracker=experiment_tracker.name)
-def train_distilbert(train_dataset: Dataset, eval_dataset: Dataset) -> Trainer:
+def train_distilbert(train_dataset: Dataset, eval_dataset: Dataset) -> Annotated[str, "model_path"]:
     """
     trains model based on ingested data
 
@@ -63,7 +64,9 @@ def train_distilbert(train_dataset: Dataset, eval_dataset: Dataset) -> Trainer:
         )
 
         trainer.train()
-        return trainer
+        trainer.save_model()
+
+        return training_args.output_dir
     except Exception as e:
         logging.error("Error in training model: {}".format(e))
         raise e
