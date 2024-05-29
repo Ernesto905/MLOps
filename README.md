@@ -43,3 +43,13 @@ zenml stack list
 ```
 
 
+Finally, to run the pipeline, specify the model you would like to use
+```Bash
+python run_pipeline.py --sentiment_analysis
+```
+or 
+```Bash
+python run_pipeline.py --linear_regression
+```
+
+
