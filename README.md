@@ -1,20 +1,16 @@
 # Machine Learning Pipeline Orchestration with ZenML
 
 ## Introduction
-The repository documents the development of an automated, end-to-end machine learning pipeline. Using ZenML as the orchestration layer, the objective is to create cloud-independent, production ready, infrastructure for a variety of model use cases such as sentiment analysis, prediction with linear regression, and perhaps some non-supervised workloads.  
-
-## Note
-This README serves as a dynamic document, subject to updates as the project evolves and more insights on ZenML's capabilities and its interoperability with AWS/GCP/Mlflow are gathered. As time goes on, the tools employed are subject to substitution or removal, if too many issues arise given ZenML as the backbone. More documentation will be included as the project grows. 
+This repository showcases an automated, end-to-end machine learning pipeline, from data preprocessing to model training. It uses ZenML as the orchestration layer. It provides infrastructure for training a distil-bert model on sentiment analysis, as well as a simple linear regression model. The models used are small enough to run locally on most laptops. 
 
 ## Project Overview
-This project aims to demonstrate the effective use of several tools for orchestrating a machine learning workflow. ZenML serves as the central component, coordinating between the following elements:
+The following tools were used in the creation of this pipeline
+
+### ZenML
+ZenML serves as the central component, coordinating between the different pipeline stages
 
 ### MLFlow
-Experiment tracking and model versioning.
-
-### AWS
-Sagemaker for model training and deployment of model endpoints for inference. 
-S3 for artifact storage 
+Experiment tracking and model metric visualization
 
 ## Running the pipeline 
 Create a data directory at the root of the project and import the presently working  into data directory of the root of the project. 
