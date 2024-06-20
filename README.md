@@ -1,4 +1,4 @@
-# Machine Learning Pipeline Orchestration with ZenML (Proof of Concept)
+# Machine Learning Pipeline Orchestration with ZenML
 
 ## Introduction
 The repository documents the development of an automated, end-to-end machine learning pipeline. Using ZenML as the orchestration layer, the objective is to create cloud-independent, production ready, infrastructure for a variety of model use cases such as sentiment analysis, prediction with linear regression, and perhaps some non-supervised workloads.  
